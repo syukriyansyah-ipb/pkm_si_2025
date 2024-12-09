@@ -10,10 +10,10 @@ st.set_page_config(
 )
 
 # Membaca CSV langsung dari URL
-presensi_sosialisasi = pd.read_excel('daftar_hadir_sosialisasi.xlsx')
-presensi_sosialisasi["Kelas"] = presensi_sosialisasi["Kelas"].str.replace(" ", "").str.upper()
-unique_counts = presensi_sosialisasi["Kelas"].value_counts().reset_index()
-unique_counts.columns = ["Kelas", "Jumlah"]
+# presensi_sosialisasi = pd.read_excel('daftar_hadir_sosialisasi.xlsx')
+# presensi_sosialisasi["Kelas"] = presensi_sosialisasi["Kelas"].str.replace(" ", "").str.upper()
+# unique_counts = presensi_sosialisasi["Kelas"].value_counts().reset_index()
+# unique_counts.columns = ["Kelas", "Jumlah"]
 
 
 # kelas - pkm

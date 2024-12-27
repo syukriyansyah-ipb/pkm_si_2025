@@ -3,7 +3,7 @@ import streamlit as st
 import altair as alt
 
 st.set_page_config(
-    page_title="Laporan PKM SI 2025",  # Judul halaman
+    page_title="Laporan PKM SISTEM INFORMASI 2025",  # Judul halaman
     page_icon=":bar_chart:",           # Ikon (emoji atau path file)
     layout="wide",                     # Mengatur mode layout menjadi lebar
     initial_sidebar_state="collapsed"  # Menyembunyikan sidebar secara default
@@ -19,7 +19,63 @@ st.set_page_config(
 # kelas - pkm
 data_pkm = pd.read_excel('daftar_pkm_2025.xlsx')
 
-st.header("STATISTIK PKM SISFOR 2025")
+
+# Konten
+st.markdown("""
+### Selamat Datang di Portal Informasi PKM
+Saat ini jumlah PKM yang terdaftar adalah sebanyak 20 buah.
+Akses link berikut untuk pendaftaran, pedoman, dan bahan lainnya.
+""")
+
+# Fungsi untuk membuat card
+def create_card_info(title, description, link, button_text):
+    card_template = f"""
+    <div style="border:1px solid #ddd; border-radius:8px; padding:16px; margin-bottom:16px; box-shadow:2px 2px 10px rgba(0,0,0,0.1) text-center;">
+        <h3>{title}</h3>
+        <p>{description}</p>
+        <a href="{link}" target="_blank" style="text-decoration:none;">
+            <button style="background-color:#4CAF50; color:white; padding:8px 16px; border:none; border-radius:4px; cursor:pointer;">
+                {button_text}
+            </button>
+        </a>
+    </div>
+    """
+    return card_template
+
+# Fungsi untuk membuat card
+def create_card(title, description, link, button_text):
+    card_template = f"""
+    <div style="border:1px solid #ddd; border-radius:8px; padding:16px; margin-bottom:16px; box-shadow:2px 2px 10px rgba(0,0,0,0.1) text-center;">
+        <h3>{title}</h3>
+        <p>{description}</p>
+        <a href="{link}" target="_blank" style="text-decoration:none;">
+            <button style="background-color:#4CAF50; color:white; padding:8px 16px; border:none; border-radius:4px; cursor:pointer;">
+                {button_text}
+            </button>
+        </a>
+    </div>
+    """
+    return card_template
+
+card1, card2 = st.columns(2, gap='small')
+with card1:
+    # Card 1 - Link Pendaftaran
+    st.markdown(create_card(
+        title="Link Pendaftaran PKM",
+        description="Daftarkan judul PKM Anda melalui tautan berikut.",
+        link="https://forms.gle/UeqZyMUM5d2q14nM8",  # Ganti dengan URL pendaftaran
+        button_text="Daftar Sekarang"
+    ), unsafe_allow_html=True)
+
+with card2:
+    # Card 2 - Pedoman PKM
+    st.markdown(create_card(
+        title="Pedoman PKM",
+        description="Akses panduan resmi PKM untuk mempersiapkan proposal Anda.",
+        link="https://simbelmawa.kemdikbud.go.id/portal/penerimaan-proposal-pkm-2024/",  # Ganti dengan URL pedoman
+        button_text="Lihat Pedoman"
+    ), unsafe_allow_html=True)
+
 
 st.subheader('Daftar PKM')
 st.dataframe(data_pkm[['Bidang', 'Kelas', 'Pembimbing', 'Judul']], use_container_width=True)
